@@ -14,6 +14,11 @@
             });
     }
 
+    $scope.saveCustomer = function () {
+        console.log($scope.customers);
+        
+    }
+
     $scope.showCustomer = function (customer) {
         $scope.flags.shownFromList = true; // note this object is declared in the RootViewModel
         //viewModelHelper.navigateTo('customer/show/' + customer.CustomerId);
@@ -58,28 +63,29 @@
         });
     };
 
-    $scope.toggleAnimation = function () {
-        $scope.animationsEnabled = !$scope.animationsEnabled;
-    };
+    //$scope.toggleAnimation = function () {
+    //    $scope.animationsEnabled = !$scope.animationsEnabled;
+    //};
 });
 
 
-customerModule.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, item) {
+customerModule.controller('ModalInstanceCtrl', function ($scope, viewModelHelper, $uibModalInstance, item) {
 
     $scope.item = item;
 
-    //$scope.items = items;
-
-    //$scope.selected = {
-    //    item: $scope.items[0]
-    //};
 
     $scope.ok = function () {
         $uibModalInstance.close($scope.item);
         console.log($scope.item);
+        viewModelHelper.apiPost('api/customers', $scope.item,
+            function (result) {
+                $scope.item = result.data;
+            });
     };
 
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
     };
+
+
 });

@@ -20,6 +20,16 @@ namespace AngularAndMVC.Controllers.API
             return request.CreateResponse<CustomerModel[]>(HttpStatusCode.OK, customers.ToArray());
         }
 
+        [HttpPost]
+        [Route("customers")]
+        public HttpResponseMessage UpdateCustomers(HttpRequestMessage request, CustomerModel customer)
+        {
+            //var customers = DataFactory.GetCustomers();
+
+                        
+            return request.CreateResponse<CustomerModel>(HttpStatusCode.OK, customer);
+        }
+
         [HttpGet]
         [Route("customer/{customerId}")]
         public HttpResponseMessage GetCustomer(HttpRequestMessage request, int customerId)
