@@ -1,5 +1,5 @@
 ﻿
-var customerModule = angular.module('customer', ['common']);
+var customerModule = angular.module('customer', ['common', 'angularUtils.directives.dirPagination']);
 
 customerModule.config(function ($routeProvider,
                                 $locationProvider) {
