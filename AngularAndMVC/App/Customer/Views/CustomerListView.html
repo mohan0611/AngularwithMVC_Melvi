@@ -8,19 +8,23 @@
         <thead>
             <tr>
                 <th></th>
+                <th>Customer Id</th>
                 <th>Customer Name</th>
                 <th>Email Address</th>
+                <th>edit</th>
             </tr>
         </thead>
-        <tbody dir-paginate="c in customers|orderBy:sortKey:reverse|itemsPerPage:2">
+        <tbody dir-paginate="c in customers|orderBy:sortKey:reverse|itemsPerPage:3">
             <tr>
-                <td><a href="#" ng-click="showCustomer(c)">show</a></td>
+                <td><a href="#" ng-click="showCustomer(c)">Edit</a></td>
+                <td>{{ c.CustomerId }}</td>
                 <td>{{ c.FirstName + ' ' + c.LastName }}</td>
                 <td>{{ c.Email }}</td>
+                <td><a class="btn" ng-click="open(c)">Edit item</a></td>
             </tr>
         </tbody>
     </table>
-    <dir-pagination-controls max-size="2"
+    <dir-pagination-controls max-size="5"
                              direction-links="true"
                              boundary-links="true">
     </dir-pagination-controls>
